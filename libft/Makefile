@@ -36,6 +36,7 @@ fclean: clean
 
 clean:
 	@/bin/rm -f $(OBJ)
+	@/bin/rm -f libft.h.gch
 
 re: fclean all
 
