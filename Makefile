@@ -18,6 +18,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 LIB = libft/libft.a
 LIBDIR = libft/
+HDR = fillit.h
 
 all: $(SRC) $(NAME)
 
