@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/11 16:04:35 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/11 16:15:18 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main (int ac, char **av)
 	if (!(board = ft_makeboard(figs)))	//TODO
 		return (3);
 	workitbaby(figs, board);					//TODO
+	free_board(board);
 	ft_vecdel(&figs);
 	close(fd);
 }
