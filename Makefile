@@ -16,14 +16,14 @@ SRC = $(wildcard *.c)
 OBJ=$(SRC:.c=.o)
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
-LIB = libft/libft.a
+LIB = libft.a
 LIBDIR = libft/
 HDR = fillit.h
 
-all: $(SRC) $(NAME)
+all: lib $(SRC) $(NAME)
 
-$(NAME): lib
-	@$(CC) $(CFLAGS) -o $(NAME) main.c $(LIB) $(OBJ)
+$(NAME):
+	@$(CC) $(CFLAGS) -I $(LIBDIR) -o $(NAME) main.c $(LIB) $(OBJ)
 
 lib:  
 	@make -C $(LIBDIR)
