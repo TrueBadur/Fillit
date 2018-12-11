@@ -16,30 +16,30 @@ SRC = $(wildcard *.c)
 OBJ=$(SRC:.c=.o)
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
-LIB = libft.a
+LIB = libft/libft.a
 LIBDIR = libft/
 HDR = fillit.h
 
-all: lib $(SRC) $(NAME)
+all: lib $(OBJ) $(NAME)
 
 $(NAME):
-	@$(CC) $(CFLAGS) -I $(LIBDIR) -o $(NAME) main.c $(LIB) $(OBJ)
+	$(CC) $(CFLAGS) -I $(LIBDIR) -o $(NAME) main.c $(LIB) $(OBJ)
 
 lib:  
-	@make -C $(LIBDIR)
+	make -C $(LIBDIR)
 
 %.o: %.c $(HDR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 fclean: clean
-	@/bin/rm -f $(NAME) 
-	@make -C $(LIBDIR) fclean
+	/bin/rm -f $(NAME) 
+	make -C $(LIBDIR) fclean
 
 clean: cleanlib
-	@/bin/rm -f $(OBJ)
+	/bin/rm -f $(OBJ)
 
 cleanlib: 
-	@make -C $(LIBDIR) clean
+	make -C $(LIBDIR) clean
 
 re: fclean all
 
