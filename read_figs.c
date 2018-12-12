@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:20:41 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/12 17:11:54 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/12 17:25:12 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static t_tet	*lines_to_tet(char **lines, t_tet *one)
 		{
 			if (lines[i][j] == '#')
 			{
-				one->data[k++] = i;
-				one->data[k++] = j;
+				one->data[k++] = i;  //TODO dangerous
+				one->data[k++] = j;  //TODO dangerous
 			}
 			else if (lines[i][j] != '.')
 				exit(put_er(0));
