@@ -12,7 +12,7 @@
 # **************************************************************************** #
 
 NAME = libft.a
-SRC = $(wildcard ft*.c) 
+SRC = $(wildcard ft*.c) get_next_line.c 
 OBJ=$(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror

@@ -22,8 +22,8 @@ HDR = fillit.h
 
 all: lib $(OBJ) $(NAME)
 
-$(NAME):
-	$(CC) $(CFLAGS) -I $(LIBDIR) -o $(NAME) main.c $(LIB) $(OBJ)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -I $(LIBDIR) -o $(NAME) $(LIB) $(OBJ)
 
 lib:  
 	make -C $(LIBDIR)

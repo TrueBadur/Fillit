@@ -6,12 +6,12 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 12:51:25 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/08 12:52:41 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/11 17:47:34 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft/libft.h"
+#include "libft.h"
 #include <stdio.h>
 
 static int	ft_gnlsub(t_vector *vec, int offset, char **line)
