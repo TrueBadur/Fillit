@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:52:39 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/11 22:22:56 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/12 17:04:23 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ typedef struct	s_tetrimino
 	unsigned char	l;
 }				t_tet;
 
-//int				put_er(int);
+# define COLS(x) x->data[1], x->data[3], x->data[5], x->data[7]
+# define ROWS(x) x->data[0], x->data[2], x->data[4], x->data[6]
+
 //void			pr_usage(void);
+t_tet		*improve_tet(t_tet *one);
 t_list		*read_figs(int fd);
 void			workitbaby(t_vector *figs, char **board);
 #endif
