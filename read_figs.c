@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:20:41 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/12 13:50:55 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/12 15:46:29 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,63 @@ int		max3(int a, int b, int c)
 	return (c);
 }
 
-char	need_to_move(t_tet *t, int y)
+int		max4(int a, int b, int c, int d)
 {
-	return (t->data[y] * t->data[2 + y] * t->data[4 + y] * t->data[6 + y]);
+	int	m;
+
+	if (d > (m = max3(a, b, c)))
+		return (d);
+	return (m);
 }
 
-void	move(t_tet *t, int y)
+char	this_fucking_tetrimino(t_tet *t)
+{
+	return (t->data[0] == 0 && t->data[1] == 1 && t->data[2] == 1 &&
+			t->data[3] == 0 && t->data[4] == 1 && t->data[5] == 1 &&
+			t->data[6] == 2 && t->data[7] == 1);
+}
+
+char	need_to_move(t_tet *t, int col)
+{
+	return (t->data[col] * t->data[2 + col] * t->data[4 + col] * t->data[6 + col]);
+}
+
+void	move(t_tet *t, int col, int shift)
 {
 	int	i;
 
-	while (need_to_move(t, y))
-	{
-		i = -1;
-		while (++i < 4)
-			t->data[2 * i + y] = t->data[2 * i + y] - 1;
-	}
+	i = -1;
+	while (++i < 4)
+		t->data[2 * i + col] = t->data[2 * i + col] - shift;
 }
 
 int		put_er(int ret)
 {
-//	if (l)                     TODO delete list
-//		ft_vecdel(v);
+	//	if (l)                     TODO delete list
+	//		ft_vecdel(v);
 	ft_putendl("error");
 	return (ret);
 }
 
 t_tet		*improve(t_tet *one)
 {
-	move(one, 0);
-	move(one, 1);
+	while (need_to_move(one, 0))
+		move(one, 0, 1);
+	while (need_to_move(one, 1))
+		move(one, 1, 1);
+	one->w = max4(one->data[1], one->data[3], one->data[5], one->data[7]) + 1;
+	one->h = max4(one->data[0], one->data[2], one->data[4], one->data[6]) + 1;
 	if (one->data[0] + one->data[1] == 0)
+		;
+	else if (this_fucking_tetrimino(one))
 	{
-		one->w = max3(one->data[2], one->data[4], one->data[6]) + 1;
-		one->h = max3(one->data[3], one->data[5], one->data[7]) + 1;
+		move(one, 1, one->w - 1);
+		one->w = -one->w;
+	}
+	else
+	{
+		move(one, 0, one->h - 1);
+		one->h = -one->h;
 	}
 	return (one);
 }
@@ -76,8 +100,8 @@ t_tet		*lines_to_tet(char **lines, char c)
 		{
 			if (lines[i][j] == '#')
 			{
-				one->data[k++] = j;
 				one->data[k++] = i;
+				one->data[k++] = j;
 			}
 			else if (lines[i][j] != '.')
 				exit(put_er(0));
