@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/11 16:15:18 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/12 14:14:47 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int main (int ac, char **av)
 {
-	int fd;
-	t_vector *figs;
-	char **board;
-	int i;
+	int		fd;
+	t_list	*figs;
+	t_board	*board;
 
 	if (ac == 1 || ac > 2)
 	{
