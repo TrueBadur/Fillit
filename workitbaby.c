@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:22:33 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 16:40:38 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:04:45 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static unsigned short find_free(t_board *b, short pf)
 	return (0);
 }
 
-void			workitbaby(t_list *figs, t_board *board, unsigned short posf)
+int			workitbaby(t_list *figs, t_board *board, unsigned short posf)
 {
 	t_list			*cur;
 	t_list			*prev;
@@ -118,8 +118,7 @@ void			workitbaby(t_list *figs, t_board *board, unsigned short posf)
 	if (!figs)
 	{
 		print_board(board);
-		free_board(&board);
-		exit(0);
+		return (1);
 	}
 	printf("------Start of workitbaby-----\n");
 	print_board(board);
@@ -137,7 +136,8 @@ void			workitbaby(t_list *figs, t_board *board, unsigned short posf)
 			else
 				prev->next = cur->next;
 	print_board(board);
-			workitbaby(figs, board, posf);
+			if (workitbaby(figs, board, posf))
+				return (1);
 			printf("+++++++++++Returned from recursion++++++++\n");
 			place_fig(board, cur->content, posi, 1);
 			if (!prev)
@@ -148,4 +148,5 @@ void			workitbaby(t_list *figs, t_board *board, unsigned short posf)
 		prev = cur;
 		cur = cur->next;
 	}
+	return (0);
 }

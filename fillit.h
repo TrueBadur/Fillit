@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:52:39 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 17:49:23 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/13 20:19:16 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct	s_board
 
 void			pr_usage(void);
 t_list			*read_figs(int fd, int *b_size);
-void			workitbaby(t_list *figs, t_board *board, unsigned short posf);
+int				workitbaby(t_list *figs, t_board *board, unsigned short posf);
 void			free_board(t_board **b);
 void			print_board(t_board *b);
 t_tet			*improve_tet(t_tet *one);
