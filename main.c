@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 23:25:23 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/14 00:19:49 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 static int	get_board_size(int fc)
 {
-	int c;
+	int i;
 
-	c = ft_sqrt(fc);
-	//printf("in sqrt c = %d\n", c);
-	return ((c * c == fc) ? c : c + 1);
+	i = 2;
+	while (i * i < fc)
+		i++;
+	printf("in sqrt c = %d\n", i);
+	return (i);
 }
 
 int main (int ac, char **av)
@@ -40,12 +42,12 @@ int main (int ac, char **av)
 		return (2);
 	}
 	figs = read_figs(fd, &c);
-//	printf("c = %d\n", c);
+	printf("c = %d\n", c);
 	c = get_board_size(c * 4);
-//	printf("c = %d\n", c);
+	printf("c = %d\n", c);
 	while (1)
 	{
-//		printf("Board size = %d\n", c);
+		printf("Board size = %d\n", c);
 		if (!(board = ft_makeboard(c)))	//TODO
 			return (3);
 		if (workitbaby(figs, board, 0))
