@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:52:39 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 14:29:27 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:50:43 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void			free_board(t_board **b);
 void			print_board(t_board *b);
 t_tet			*improve_tet(t_tet *one);
 int				put_er(int ret);
+t_board			*ft_makeboard(int);
 #endif
