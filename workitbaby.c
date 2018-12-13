@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:22:33 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 23:19:01 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/14 02:17:51 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	place_fig(t_board *b, t_tet *fig, unsigned char posf, char f)
  * if figures width or height is in the boards boundaries
  */
 
-static short	find_place_fig(t_board *board, t_tet *cur, unsigned short posf)
+/*static short	find_place_fig(t_board *board, t_tet *cur, unsigned short posf)
 {
 	char row;
 	char col;
@@ -75,7 +75,7 @@ static short	find_place_fig(t_board *board, t_tet *cur, unsigned short posf)
 		col = posf % board->w + cur->w;
 	}
 	return (-1);
-}
+}*/
 
 /*
  * cicle through the board to find first free spot with at least one 
@@ -120,53 +120,51 @@ int			tet_cmp(t_tet *t1, t_tet *t2)
 	return (1);
 }
 
-int			workitbaby(t_list *figs, t_board *board, unsigned short posf)
+int			workitbaby(t_list *figs, t_board *board, unsigned short posi)
 {
-	t_list			*cur;
-	t_list			*prev;
-	short	posi;
-	short	posf_c;
+	short	posf;
+	short	posi_c;
+	t_tet	*t;
 
 	if (!figs)
 	{
 		print_board(board);
 		return (1);
 	}
-	cur = figs;
-	prev = NULL;
-	posf_c = posf;
-	while (cur)
+	t = (t_tet *)(figs->content);
+	posi_c = posi;
+
+	char row;
+	char col;
+
+	row = posi / board->w + t->h;
+	col = posi % board->w + t->w;
+	posf = posi;
+	while (row <= board->w && posf < board->w * board->w)
 	{
-		//printf("In while testing %c\n", ((t_tet*)(cur->content))->l);
-		/*if (((t_tet*)(cur->content))->l > 'Q')
+//		printf("Checking row = %d, col = %d for fig %c\n", row, col, t->l);
+		if (row >= -1 && col >= -1 && col <= board->w)
 		{
-			print_board(board);
-			printf("\n");
-		}*/
-		if ((posi = find_place_fig(board, cur->content, posf)) != -1)
-		{
-			posf = find_free(board, posf);
-			if (!prev)
-				figs = cur->next;
-			else
-				prev->next = cur->next;
-		//	printf("posf = %d\n", posf);
-			if (workitbaby(figs, board, posf))
-				return (1);
-			place_fig(board, cur->content, posi, 1);
-			if (!prev)
-				figs = cur;
-			else
-				prev->next = cur;
-			posf = posf_c;
-			while (cur->next && tet_cmp((t_tet *)cur->content, (t_tet *)cur->next->content))
+			if (place_fig(board, t, posf, 2))
 			{
-				//printf("In tet_cmp\n");
-				cur = cur->next;
+//		print_board(board);
+//		printf("\n");
+			posi = find_free(board, posi);
+//			printf("posf = %d\n", posi);
+			if (workitbaby(figs->next, board, posi))
+				return (1);
+			place_fig(board, t, posf, 1);
+			posi = posi_c;
+//			while (figs->next && tet_cmp(t, (t_tet *)figs->next->content))
+//			{
+//				//printf("In tet_cmp\n");
+//				figs = figs->next;
+//			}
 			}
 		}
-		prev = cur;
-		cur = cur->next;
+		posf++;
+		row = posf / board->w + t->h;
+		col = posf % board->w + t->w;
 	}
 	return (0);
 }
