@@ -6,13 +6,13 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:20:41 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/12 17:25:12 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:54:29 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int		put_er(int ret)
+int		put_er(int ret)
 {
 //	if (l)                     TODO delete list
 //		ft_vecdel(v);
