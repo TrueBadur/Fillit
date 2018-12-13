@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/12 14:14:47 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:05:35 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main (int ac, char **av)
 
 	if (ac == 1 || ac > 2)
 	{
-		pr_usage();				//TODO
+//		pr_usage();				//TODO
 		return (1);
 	}
 	if ((fd = open(av[1], O_RDONLY)) == -1)
@@ -32,7 +32,7 @@ int main (int ac, char **av)
 	if (!(board = ft_makeboard(figs)))	//TODO
 		return (3);
 	workitbaby(figs, board);					//TODO
-	free_board(board);
-	ft_vecdel(&figs);
+//	free_board(board);
+//	ft_vecdel(&figs);
 	close(fd);
 }
