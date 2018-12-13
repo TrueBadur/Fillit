@@ -6,7 +6,7 @@
 /*   By: mbartole <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/20 03:37:54 by mbartole          #+#    #+#             */
-/*   Updated: 2018/12/13 21:14:55 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 23:25:42 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,4 @@ int		ft_sqrt(int nb)
 		nb = (nb + s / nb) / 2;
 	}
 	return (nb);
-	//if (nb * nb == s)
-	//	return (nb);
-	//else
-	//	return (0);
 }

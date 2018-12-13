@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:22:33 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 22:16:03 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 23:19:01 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,20 @@ static unsigned short find_free(t_board *b, short pf)
 	return (0);
 }
 
+int			tet_cmp(t_tet *t1, t_tet *t2)
+{
+	int i;
+	if (t1->w != t2->w || t1->h != t2->h)
+		return (0);
+	i = -1;
+	while (++i < 8)
+	{
+		if ((t1->data)[i] != (t2->data)[i])
+			return (0);
+	}
+	return (1);
+}
+
 int			workitbaby(t_list *figs, t_board *board, unsigned short posf)
 {
 	t_list			*cur;
@@ -124,11 +138,11 @@ int			workitbaby(t_list *figs, t_board *board, unsigned short posf)
 	while (cur)
 	{
 		//printf("In while testing %c\n", ((t_tet*)(cur->content))->l);
-		if (((t_tet*)(cur->content))->l > 'Q')
+		/*if (((t_tet*)(cur->content))->l > 'Q')
 		{
 			print_board(board);
 			printf("\n");
-		}
+		}*/
 		if ((posi = find_place_fig(board, cur->content, posf)) != -1)
 		{
 			posf = find_free(board, posf);
@@ -145,6 +159,11 @@ int			workitbaby(t_list *figs, t_board *board, unsigned short posf)
 			else
 				prev->next = cur;
 			posf = posf_c;
+			while (cur->next && tet_cmp((t_tet *)cur->content, (t_tet *)cur->next->content))
+			{
+				//printf("In tet_cmp\n");
+				cur = cur->next;
+			}
 		}
 		prev = cur;
 		cur = cur->next;
