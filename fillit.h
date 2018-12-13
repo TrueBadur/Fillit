@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:52:39 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 13:59:53 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:29:27 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,15 @@ typedef struct	s_board
 	char	col;
 }				t_board;
 
-//int				put_er(int);
-//void			pr_usage(void);
+# define COLS(x) x->data[1], x->data[3], x->data[5], x->data[7]
+# define ROWS(x) x->data[0], x->data[2], x->data[4], x->data[6]
+# define FUCKING_TET(x) x->data[0] == 0 && x->data[1] == 1 && x->data[2] == 1 && x->data[3] == 0 && x->data[4] == 1 && x->data[5] == 1 && x->data[6] == 2 && x->data[7] == 1
+
+void			pr_usage(void);
 t_list			*read_figs(int fd);
 void			workitbaby(t_list *figs, t_board *board, unsigned short posf);
 void			free_board(t_board **b);
 void			print_board(t_board *b);
+t_tet			*improve_tet(t_tet *one);
+int				put_er(int ret);
 #endif
