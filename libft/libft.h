@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 15:55:20 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/11 14:30:48 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:33:11 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ t_btavl				*ft_avlins(t_btavl *tr, t_btavl *node);
 t_btavl				*ft_avlrem(t_btavl *tr, int key, void (*f)(void **));
 t_btavl				*ft_avlfree(t_btavl *tr);
 void				*ft_avlsearch(t_btavl *tr, int key);
+int					ft_sqrt(int);
 #endif
