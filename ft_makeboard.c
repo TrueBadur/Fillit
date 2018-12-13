@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:05:45 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 15:16:31 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 20:13:01 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,21 @@
 
 t_board	*ft_makeboard(int fc)
 {
-	int		t;
 	int		i;
 	int		j;
 	t_board *b;
 
-	t = ft_sqrt(fc);
-	t = (t * t == fc) ? t : t + 1;
 	if (!(b = malloc(sizeof(t_board))))
 		return (NULL);
-	if (!(b->data = (char **)malloc(sizeof(char *) * t)))
+	if (!(b->data = (char **)malloc(sizeof(char *) * fc)))
 	{
 		free(b);
 		return (NULL);
 	}
 	i = -1;
-	while (++i < t)
+	while (++i < fc)
 	{
-		if (!(b->data[i] = ft_strnew(t)))
+		if (!(b->data[i] = ft_strnew(fc)))
 		{
 			while (--i)
 				free(b->data[i]);
@@ -40,9 +37,9 @@ t_board	*ft_makeboard(int fc)
 			return (NULL);
 		}
 		j = -1;
-		while (++j < t)
+		while (++j < fc)
 			b->data[i][j] = '.';
 	}
-	b->w = t;
+	b->w = fc;
 	return (b);
 }
