@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:20:41 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 14:54:29 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:53:42 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_tet	*get_one(int fd, char c)
 	return (lines_to_tet(lines, one));
 }
 
-t_list			*read_figs(int fd)
+t_list			*read_figs(int fd, int *b_size)
 {
 	int		i;
 	char	*line;
@@ -85,5 +85,6 @@ t_list			*read_figs(int fd)
 		if (ft_strcmp(line, ""))
 			exit(put_er(0));
 	}
+	*b_size = i + 1;
 	return (l);
 }
