@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:22:33 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/12 20:07:46 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 13:59:44 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,32 @@ static short	find_place_fig(t_board *board, t_tet *cur, unsigned short posf)
 	return (0);
 }
 
-static unsigned short find_free(t_board *b, short posf, short posi, char di)
+/*
+ * cicle through the board to find first free spot with at least one 
+ * direction free
+ */
+
+static unsigned short find_free(t_board *b, short pf)
 {
 	char	ro;
 	char	co;
+	char	**i;
 
-	//check posf pos 
-	while (posf < board->w * board->w)
+	i = (char **)b->data;
+	while (pf < b->w * b->w)
 	{
-		if (((char **)b->data)[posf / b->w][posf % b->w] != '.')
+		ro = pf / b->w;
+		co = pf % b->w;
+		if (i[ro][co] != '.')
 		{
-			if(((char **)b->data)[posf / b->w + 1][posf % b->w] == '.'
-				|| ((char **)b->data)[posf / b->w][posf % b->w + 1] == '.')
-				return (posf);
-			if ((posf > b->w && posf % b->w 
+			if ((ro + 1 < b->w && i[ro + 1][pf % b->w] == '.') ||
+					(co + 1 < b->w && i[ro][co + 1] == '.') ||
+					(ro - 1 >= 0 && i[ro - 1][co] == '.') ||
+					(co - 1 >= 0 && i[ro][co - 1] == '.'))
+				return (pf);
 		}
+		pf++;
 	}
-	//if it's not filled
-	// if at least one of directions is free 
-	//  return this pos
-	//move on
 	return (0);
 }
 
@@ -102,25 +108,17 @@ void			workitbaby(t_list *figs, t_board *board, unsigned short posf)
 
 	if (!figs)
 	{
-		//	print_board(board);
+		print_board(board);
+		free_board(&board);
 		exit(0);
 	}
 	cur = figs;
 	prev = NULL;
 	while (cur)
 	{
-		//while there are figures
-		//try to place current fig somewhere on board
-		//if success 
-		// find first free space and store it
-		// store point of insertion of curr fig
-		// call recursive with trimed list of figs and first free point
-		// if recursion returned
-		//  remove fig from insertion point
-		//  back find last free space
 		if ((posi = find_place_fig(board, cur->content, posf)))
 		{
-			posf = find_free(board, posf, posi, 1);
+			posf = find_free(board, posf);
 			if (!prev)
 				figs = cur->next;
 			else

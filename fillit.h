@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:52:39 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/12 18:35:48 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/13 13:59:53 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct	s_board
 
 //int				put_er(int);
 //void			pr_usage(void);
-t_list		*read_figs(int fd);
+t_list			*read_figs(int fd);
 void			workitbaby(t_list *figs, t_board *board, unsigned short posf);
+void			free_board(t_board **b);
+void			print_board(t_board *b);
 #endif
