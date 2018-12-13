@@ -28,7 +28,7 @@ $(NAME): $(OBJ)
 lib:  
 	make -C $(LIBDIR)
 
-%.o: %.c $(HDR)
+%.o: %.c $(HDR) $(LIB)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 fclean: clean
