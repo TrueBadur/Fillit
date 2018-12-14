@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:20:41 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 18:19:18 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/14 03:00:48 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_list			*read_figs(int fd, int *b_size)
 		if (ft_strcmp(line, ""))
 			exit(put_er(0));
 	}
-	*b_size = i + 1;
+	if ((*b_size = i + 1) > 26)
+		exit(put_er(0));
 	return (l);
 }
