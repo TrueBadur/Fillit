@@ -6,20 +6,23 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:22:33 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/14 02:51:37 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:20:39 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
+#define T_ROW (posf / board->w + ((t_tet *)(figs->content))->h)
+#define T_COL (posf % board->w + ((t_tet *)(figs->content))->w)
+#define T_TET ((t_tet *)(figs->content))
 
 /*
- * tries to place given figure in given pos
- * or deletes given figure from given pos
- * depending on f
- */
+** tries to place given figure in given pos
+** or deletes given figure from given pos
+** depending on f
+*/
 
-static int	place_fig(t_board *b, t_tet *fig, unsigned char posf, char f)
+static int		place_fig(t_board *b, t_tet *fig, unsigned char posf, char f)
 {
 	char	*i;
 	char	j;
@@ -48,41 +51,12 @@ static int	place_fig(t_board *b, t_tet *fig, unsigned char posf, char f)
 	return (1);
 }
 
-/* 
- * cicle through the board trying to put figure in each space
- * if figures width or height is in the boards boundaries
- */
-
-/*static short	find_place_fig(t_board *board, t_tet *cur, unsigned short posf)
-{
-	char row;
-	char col;
-
-	row = posf / board->w + cur->h;
-	col = posf % board->w + cur->w;
-	while (row <= board->w && posf < board->w * board->w)
-	{
-		//printf("Checking row = %d, col = %d for fig %c\n", row, col, cur->l);
-		if (row >= -1 && col >= -1 && col <= board->w)
-		{
-			if (place_fig(board, cur, posf, 2))
-			{
-				return (posf);
-			}
-		}
-		posf++;
-		row = posf / board->w + cur->h;
-		col = posf % board->w + cur->w;
-	}
-	return (-1);
-}*/
-
 /*
- * cicle through the board to find first free spot with at least one 
- * direction free
- */
+** cicle through the board to find first free spot with at least one
+** direction free
+*/
 
-static unsigned short find_free(t_board *b, short pf)
+static short	find_free(t_board *b, short pf)
 {
 	char	ro;
 	char	co;
@@ -106,9 +80,10 @@ static unsigned short find_free(t_board *b, short pf)
 	return (0);
 }
 
-int			tet_cmp(t_tet *t1, t_tet *t2)
+int				tet_cmp(t_tet *t1, t_tet *t2)
 {
 	int i;
+
 	if (t1->w != t2->w || t1->h != t2->h)
 		return (0);
 	i = -1;
@@ -120,51 +95,31 @@ int			tet_cmp(t_tet *t1, t_tet *t2)
 	return (1);
 }
 
-int			workitbaby(t_list *figs, t_board *board, unsigned short posi)
+int				workitbaby(t_list *figs, t_board *board, unsigned short posi)
 {
 	short	posf;
 	short	posi_c;
-	t_tet	*t;
 
 	if (!figs)
-	{
-		print_board(board);
-		return (1);
-	}
-	t = (t_tet *)(figs->content);
+		return (print_board(board));
 	posi_c = posi;
-
-	char row;
-	char col;
-
-	row = posi / board->w + t->h;
-	col = posi % board->w + t->w;
 	posf = posi;
-	while (row <= board->w && posf < board->w * board->w)
+	while (T_ROW <= board->w && posf < board->w * board->w)
 	{
-//		printf("Checking row = %d, col = %d for fig %c\n", row, col, t->l);
-		if (row >= -1 && col >= -1 && col <= board->w)
+		if (T_ROW >= -1 && T_COL >= -1 && T_COL <= board->w)
 		{
-			if (place_fig(board, t, posf, 2))
+			if (place_fig(board, T_TET, posf, 2))
 			{
-//		print_board(board);
-//		printf("\n");
-			posi = find_free(board, posi);
-//			printf("posf = %d\n", posi);
-			if (workitbaby(figs->next, board, posi))
-				return (1);
-			place_fig(board, t, posf, 1);
-			posi = posi_c;
-			if (figs->next && tet_cmp(t, (t_tet *)figs->next->content))
-			{
-				//printf("In tet_cmp\n");
-				return (0);
-			}
+				posi = find_free(board, posi);
+				if (workitbaby(figs->next, board, posi))
+					return (1);
+				place_fig(board, T_TET, posf, 1);
+				posi = posi_c;
+				if (figs->next && tet_cmp(T_TET, (t_tet *)figs->next->content))
+					return (0);
 			}
 		}
 		posf++;
-		row = posf / board->w + t->h;
-		col = posf % board->w + t->w;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:52:39 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 23:32:02 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/15 13:47:43 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			pr_usage(void);
 t_list			*read_figs(int fd, int *b_size);
 int				workitbaby(t_list *figs, t_board *board, unsigned short posf);
 void			free_board(t_board **b);
-void			print_board(t_board *b);
+int				print_board(t_board *b);
 t_tet			*improve_tet(t_tet *one);
 void			check_valid(t_tet *t);
 int				put_er(int ret);

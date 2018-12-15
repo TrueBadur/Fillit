@@ -6,13 +6,13 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 13:37:23 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 13:40:21 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/15 13:47:22 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	print_board(t_board *b)
+int	print_board(t_board *b)
 {
 	char	**d;
 	int		i;
@@ -24,4 +24,5 @@ void	print_board(t_board *b)
 		ft_putendl(d[i]);
 		i++;
 	}
+	return (1);
 }
