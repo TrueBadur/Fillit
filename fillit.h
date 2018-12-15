@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:52:39 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/15 13:47:43 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:46:10 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_board
 # define ROWS(x) x->data[0], x->data[2], x->data[4], x->data[6]
 # define FUCKING_TET(x) x->data[0] == 0 && x->data[1] == 1 && x->data[2] == 1 && x->data[3] == 0 && x->data[4] == 1 && x->data[5] == 1 && x->data[6] == 2 && x->data[7] == 1
 
-void			pr_usage(void);
+int				pr_usage(void);
 t_list			*read_figs(int fd, int *b_size);
 int				workitbaby(t_list *figs, t_board *board, unsigned short posf);
 void			free_board(t_board **b);
@@ -44,5 +44,5 @@ int				print_board(t_board *b);
 t_tet			*improve_tet(t_tet *one);
 void			check_valid(t_tet *t);
 int				put_er(int ret);
-t_board			*ft_makeboard(int);
+t_board			*ft_makeboard(int w);
 #endif

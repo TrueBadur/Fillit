@@ -6,16 +6,14 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:20:41 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/13 18:19:18 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/15 14:32:28 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		put_er(int ret)
+int				put_er(int ret)
 {
-//	if (l)                     TODO delete list
-//		ft_vecdel(v);
 	ft_putendl("error");
 	return (ret);
 }
@@ -33,7 +31,7 @@ static t_tet	*lines_to_tet(char **lines, t_tet *one)
 		j = -1;
 		while (++j < 4)
 		{
-			if (lines[i][j] == '#' && k <= 6 )
+			if (lines[i][j] == '#' && k <= 6)
 			{
 				one->data[k++] = i;
 				one->data[k++] = j;
@@ -54,7 +52,7 @@ static t_tet	*get_one(int fd, char c)
 	int		r;
 	t_tet	*one;
 
-	lines = (char **)malloc(sizeof(char *) * 4);      //TODO free somewhere
+	lines = (char **)malloc(sizeof(char *) * 4);
 	i = -1;
 	while (++i < 4 && (r = get_next_line(fd, &lines[i])) == 1)
 	{
@@ -63,7 +61,7 @@ static t_tet	*get_one(int fd, char c)
 	}
 	if (i != 4)
 		exit(put_er(0));
-	one = (t_tet *)malloc(sizeof(t_tet));   //TODO free somewhere
+	one = (t_tet *)malloc(sizeof(t_tet));
 	one->l = c;
 	return (lines_to_tet(lines, one));
 }
