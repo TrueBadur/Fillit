@@ -6,13 +6,13 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 14:54:11 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/15 14:56:16 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/15 15:01:08 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	pr_usage()
+int	pr_usage(void)
 {
 	ft_putendl("./fillit file");
 	return (1);

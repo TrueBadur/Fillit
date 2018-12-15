@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/15 14:56:59 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/15 15:00:40 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	get_board_size(int fc)
 	return (i);
 }
 
-int			main (int ac, char **av)
+int			main(int ac, char **av)
 {
 	int		fd;
 	t_list	*figs;
