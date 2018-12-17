@@ -6,7 +6,7 @@
 /*   By: mbartole <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 20:39:46 by mbartole          #+#    #+#             */
-/*   Updated: 2018/12/14 05:11:12 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/17 15:57:20 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_vert(t_tet *t, int v, int g, t_list **l)
 							t->data[2 * k + v] == t->data[2 * i + v])
 						fl = 0;
 				if (fl)
-					exit(put_er(0, l));
+					exit(put_er(0, l, t));
 			}
 	}
 }
@@ -42,7 +42,7 @@ void	check_vert(t_tet *t, int v, int g, t_list **l)
 void	check_valid(t_tet *t, t_list **l)
 {
 	if (t->h * t->w > 6)
-		exit(put_er(0, l));
+		exit(put_er(0, l, t));
 	if (t->h * t->w < 6)
 		return ;
 	check_vert(t, 1, 0, l);
