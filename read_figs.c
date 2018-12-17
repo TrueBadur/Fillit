@@ -6,13 +6,13 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:20:41 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/17 16:58:45 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:08:54 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		put_er(int ret, t_list **l, t_tet *tet)
+int				put_er(int ret, t_list **l, t_tet *tet)
 {
 	ft_lstdel(l, NULL);
 	free(tet);
@@ -20,28 +20,24 @@ int		put_er(int ret, t_list **l, t_tet *tet)
 	return (ret);
 }
 
-static t_tet	*lines_to_tet(char **lines, t_tet *one, t_list **l)
+static t_tet	*lines_to_tet(char **lines, t_tet *one, t_list **l, int k)
 {
 	int		i;
 	int		j;
-	int		k;
 
-	k = 0;
 	i = -1;
 	while (++i < 4)
 	{
 		j = -1;
 		while (++j < 4)
 		{
-			if (lines[i][j] == '#' && k <= 6)
-			{
-				one->data[k++] = i;
+			if (lines[i][j] == '#' && k <= 6 && (one->data[k++] = i) > -1)
 				one->data[k++] = j;
-			}
 			else if (lines[i][j] != '.')
 			{
 				while (i < 4)
 					free(lines[i++]);
+				free(lines);
 				exit(put_er(0, l, one));
 			}
 		}
@@ -73,11 +69,12 @@ static t_tet	*get_one(int fd, char c, t_list **l)
 	{
 		while (i > -1)
 			free(lines[i--]);
+		free(lines);
 		exit(put_er(0, l, NULL));
 	}
 	one = (t_tet *)malloc(sizeof(t_tet));
 	one->l = c;
-	return (lines_to_tet(lines, one, l));
+	return (lines_to_tet(lines, one, l, 0));
 }
 
 t_list			*read_figs(int fd, int *b_size)
