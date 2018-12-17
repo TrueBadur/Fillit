@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/14 01:18:18 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/17 11:37:17 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main (int ac, char **av)
 {
 	int		fd;
 	t_list	*figs;
-	t_board	*board;
+//	t_board	*board;
 	int		c;
 
 	if (ac == 1 || ac > 2)
@@ -42,7 +42,7 @@ int main (int ac, char **av)
 	}
 	figs = read_figs(fd, &c);
 	c = get_board_size(c * 4);
-	while (1)
+/*	while (1)
 	{
 		if (!(board = ft_makeboard(c)))	//TODO
 			return (3);
@@ -54,5 +54,5 @@ int main (int ac, char **av)
 			return (0);					//TODO
 		}
 		c++;
-	}
+	}*/
 }
