@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:52:39 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/17 17:17:58 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:18:37 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct	s_board
 # define TET_1PART(x) x[0] == 0 && x[1] == 1 && x[2] == 1 && x[3] == 0
 # define TET_2PART(x) x[4] == 1 && x[5] == 1 && x[6] == 2 && x[7] == 1
 
-int				pr_usage(void);
 t_list			*read_figs(int fd, int *b_size);
 int				workitbaby(t_list *figs, t_board *board, unsigned short posf);
 void			free_board(t_board **b);

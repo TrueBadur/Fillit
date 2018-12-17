@@ -6,12 +6,18 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/17 17:00:07 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:19:21 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
+
+static int	pr_usage(void)
+{
+	ft_putendl("usage: ./fillit file_with_tetriminos");
+	return (1);
+}
 
 static int	get_board_size(int fc)
 {
