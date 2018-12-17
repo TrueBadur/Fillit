@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/15 15:00:40 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:00:07 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			main(int ac, char **av)
 	if (ac == 1 || ac > 2)
 		return (pr_usage());
 	if ((fd = open(av[1], O_RDONLY)) == -1)
-		return (put_er(2));
+		return (put_er(2, NULL, NULL));
 	figs = read_figs(fd, &c);
 	c = get_board_size(c * 4);
 	while (1)

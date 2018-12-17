@@ -6,7 +6,7 @@
 /*   By: mbartole <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 16:26:49 by mbartole          #+#    #+#             */
-/*   Updated: 2018/12/13 20:41:01 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/14 03:41:27 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		move(t_tet *t, int col, int shift)
 		t->data[2 * i + col] = t->data[2 * i + col] - shift;
 }
 
-t_tet			*improve_tet(t_tet *one)
+t_tet			*improve_tet(t_tet *one, t_list **l)
 {
 	int	min;
 
@@ -49,7 +49,7 @@ t_tet			*improve_tet(t_tet *one)
 		move(one, 1, min);
 	one->w = max4(COLS(one)) + 1;
 	one->h = max4(ROWS(one)) + 1;
-	check_valid(one);
+	check_valid(one, l);
 	if (one->data[0] + one->data[1] == 0)
 		;
 	else if (FUCKING_TET(one))

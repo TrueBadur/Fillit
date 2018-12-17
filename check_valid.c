@@ -6,13 +6,13 @@
 /*   By: mbartole <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 20:39:46 by mbartole          #+#    #+#             */
-/*   Updated: 2018/12/13 21:18:30 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/17 15:57:20 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	check_vert(t_tet *t, int v, int g)
+void	check_vert(t_tet *t, int v, int g, t_list **l)
 {
 	int	i;
 	int	j;
@@ -34,17 +34,17 @@ void	check_vert(t_tet *t, int v, int g)
 							t->data[2 * k + v] == t->data[2 * i + v])
 						fl = 0;
 				if (fl)
-					exit(put_er(0));
+					exit(put_er(0, l, t));
 			}
 	}
 }
 
-void	check_valid(t_tet *t)
+void	check_valid(t_tet *t, t_list **l)
 {
 	if (t->h * t->w > 6)
-		exit(put_er(0));
+		exit(put_er(0, l, t));
 	if (t->h * t->w < 6)
 		return ;
-	check_vert(t, 1, 0);
-	check_vert(t, 0, 1);
+	check_vert(t, 1, 0, l);
+	check_vert(t, 0, 1, l);
 }
