@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 14:32:09 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/17 18:19:21 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/18 11:16:33 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int			main(int ac, char **av)
 	if ((fd = open(av[1], O_RDONLY)) == -1)
 		return (put_er(2, NULL, NULL));
 	figs = read_figs(fd, &c);
+	close(fd);
 	c = get_board_size(c * 4);
 	while (1)
 	{
@@ -50,8 +51,8 @@ int			main(int ac, char **av)
 		{
 			free_board(&board);
 			ft_lstdel(&figs, NULL);
-			close(fd);
 			return (0);
 		}
+		free_board(&board);
 	}
 }
