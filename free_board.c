@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 13:40:38 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/15 14:45:02 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/18 11:15:57 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 void	free_board(t_board **b)
 {
 	int		i;
-	char	**d;
 
 	i = -1;
-	d = (*b)->data;
 	while (++i < (*b)->w)
-		free((*b)->data[i]);
+		free(((*b)->data)[i]);
+	free((*b)->data);
 	free(*b);
 	b = NULL;
 }
