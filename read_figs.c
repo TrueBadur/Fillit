@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:20:41 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/17 18:08:54 by mbartole         ###   ########.fr       */
+/*   Updated: 2018/12/18 12:32:35 by mbartole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int				put_er(int ret, t_list **l, t_tet *tet)
 {
 	ft_lstdel(l, NULL);
+//			ft_putendl("free list");
 	free(tet);
+//			ft_putendl("free tet");
 	ft_putendl("error");
 	return (ret);
 }
@@ -65,11 +67,16 @@ static t_tet	*get_one(int fd, char c, t_list **l)
 		if (ft_strlen(lines[i]) != 4)
 			break ;
 	}
+	i = (r != 1 ? i - 1 : i);
 	if (i != 4)
 	{
 		while (i > -1)
+		{
+	//		ft_putendl("free lines[i]");
 			free(lines[i--]);
+		}
 		free(lines);
+	//		ft_putendl("free lines");
 		exit(put_er(0, l, NULL));
 	}
 	one = (t_tet *)malloc(sizeof(t_tet));
