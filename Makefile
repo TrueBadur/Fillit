@@ -22,7 +22,7 @@ HDR = fillit.h
 
 all: lib $(OBJ) $(NAME)
 
-$(NAME): lib $(OBJ)
+$(NAME): $(LIB) $(OBJ)
 	$(CC) $(CFLAGS) -I $(LIBDIR) -o $(NAME) $(LIB) $(OBJ)
 
 lib:  
