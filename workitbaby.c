@@ -6,7 +6,7 @@
 /*   By: ehugh-be <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 17:22:33 by ehugh-be          #+#    #+#             */
-/*   Updated: 2018/12/15 14:20:39 by ehugh-be         ###   ########.fr       */
+/*   Updated: 2018/12/19 12:03:29 by ehugh-be         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,6 @@ int				workitbaby(t_list *figs, t_board *board, unsigned short posi)
 					return (1);
 				place_fig(board, T_TET, posf, 1);
 				posi = posi_c;
-				if (figs->next && tet_cmp(T_TET, (t_tet *)figs->next->content))
-					return (0);
 			}
 		}
 		posf++;
